@@ -1,0 +1,151 @@
+Use this website as the ONLY reference:
+https://alman-and-terii-wedding-invitation--hadila591.replit.app
+
+---
+
+MAIN TASK:
+Create a brand new project that is a pixel-perfect static clone of the reference wedding invitation website.
+
+---
+
+NON-NEGOTIABLE REQUIREMENT:
+This must be a FULLY STATIC WEBSITE.
+
+* No backend
+* No Node.js server
+* No API routes
+* No database
+* No authentication
+* No server-side rendering (SSR)
+
+The project must run by simply opening index.html in a browser.
+
+---
+
+CONTENT MUST MATCH EXACTLY (DO NOT CHANGE ANYTHING):
+
+* Names: Alman & Terii
+* Date: 26 April 2026
+* All text content EXACTLY the same
+* All labels (e.g. "Kepada Yth")
+* All wording, headings, and visible content
+* Guest name must be read from URL parameter (?to=NamaTamu)
+
+DO NOT:
+
+* Change names or date
+* Rewrite or paraphrase text
+* Use placeholder content
+* Create a different invitation
+
+---
+
+MOBILE-ONLY REQUIREMENT:
+
+* Design strictly for mobile (phone experience)
+* Max width ~375px–430px
+* Center layout on desktop like a phone preview
+* Do NOT create a desktop layout
+* Keep proportions exactly like mobile
+
+---
+
+VISUAL & THEME (MATCH EXACTLY):
+
+* Elegant wedding invitation style
+* Dark maroon / burgundy background
+* Gold ornaments (traditional style)
+* Romantic, premium feel
+* Serif/script typography
+* Same spacing, alignment, and layout
+* Same buttons and UI components
+
+---
+
+SECTION ACCURACY REQUIREMENT:
+
+Before building:
+
+* Analyze the reference website carefully
+* Identify ALL sections in exact order
+
+Then recreate EXACTLY the same sections:
+
+* Opening cover screen
+* Guest greeting ("Kepada Yth")
+* Open invitation button interaction
+* Couple section
+* Wedding details section (date, time, location)
+* Additional sections (gallery, countdown, RSVP, etc. if present)
+* Closing/footer section
+
+STRICT RULES:
+
+* Do NOT skip any section
+* Do NOT add new sections
+* Do NOT change section order
+* Do NOT merge or simplify sections
+
+---
+
+INTERACTIONS & ANIMATION:
+
+* Same opening flow (cover → click → enter)
+* Smooth scrolling
+* Same fade/transition animations
+* Elegant and soft motion style
+
+---
+
+BACKGROUND MUSIC:
+
+* Include background music (mp3)
+* Must NOT autoplay on page load
+* Must start ONLY after user clicks open button
+* Must loop continuously
+* Must include play/pause toggle button
+* Frontend only (no backend)
+
+---
+
+DYNAMIC → STATIC CONVERSION:
+
+* No fetch/API calls
+* No external dynamic content
+* All content must be static (hardcoded or local JSON)
+* RSVP/form → UI only or simulate with localStorage
+* Countdown → JavaScript only (frontend)
+
+---
+
+FILES:
+
+* index.html
+* style.css
+* script.js
+* assets/ (images, icons, audio)
+
+---
+
+FINAL VALIDATION (MANDATORY):
+
+* Names = Alman & Terii (correct)
+* Date = 26 April 2026 (correct)
+* All text matches EXACTLY
+* Section order is IDENTICAL
+* No section missing
+* Visual is very close to reference (pixel-perfect target)
+* Mobile experience matches reference
+* Music works correctly
+* URL guest name works (?to=NamaTamu)
+* No backend code exists anywhere
+
+---
+
+FINAL WARNING:
+Do NOT redesign, simplify, or generate a different wedding invitation.
+
+If anything differs (text, section, layout, animation, music, or behavior),
+you must fix it until it matches the reference exactly.
+
+This must be a static, visually identical clone of the reference website.
