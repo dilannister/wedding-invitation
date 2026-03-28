@@ -21,7 +21,7 @@ function reveal(delay = 0) {
 }
 
 function Flowers() {
-  const flowers = ["🌸", "🌺", "🌷", "🪷", "💮", "🌹"];
+  const flowers = ["🌸", "💮", "💮", "💮", "💮", "🌸",
   return (
     <div className="floating-layer" aria-hidden="true">
       {Array.from({ length: 14 }, (_, i) => (
