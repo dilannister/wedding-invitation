@@ -87,10 +87,40 @@ function useCountdown(targetDate: Date) {
 
 function revealUp(delay = 0) {
   return {
-    initial: { opacity: 0, y: 28 },
-    whileInView: { opacity: 1, y: 0 },
+    initial: { opacity: 0, y: 40, scale: 0.96 },
+    whileInView: { opacity: 1, y: 0, scale: 1 },
     viewport: { once: true, amount: 0.2 },
-    transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] as const },
+    transition: {
+      duration: 1,
+      delay,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  };
+}
+
+function revealSoft(delay = 0) {
+  return {
+    initial: { opacity: 0, scale: 0.94 },
+    whileInView: { opacity: 1, scale: 1 },
+    viewport: { once: true, amount: 0.2 },
+    transition: {
+      duration: 1,
+      delay,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  };
+}
+
+function revealSide(delay = 0, x = 30) {
+  return {
+    initial: { opacity: 0, x },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true, amount: 0.2 },
+    transition: {
+      duration: 0.95,
+      delay,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
   };
 }
 
@@ -110,51 +140,56 @@ function BatikOverlay({ light = false }: { light?: boolean }) {
 }
 
 function FloatingOrnaments() {
-  const items = Array.from({ length: 9 }, (_, i) => i);
+  const flowers = ["🌸", "🌺", "🌷", "🪷", "💮", "🌹"];
+  const items = Array.from({ length: 12 }, (_, i) => i);
 
   return (
-    <div style={{ position: "fixed", inset: 0, pointerEvents: "none", overflow: "hidden", zIndex: 2 }}>
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        pointerEvents: "none",
+        overflow: "hidden",
+        zIndex: 2,
+      }}
+    >
       {items.map((i) => {
-        const left = 8 + i * 11;
-        const size = 12 + (i % 4) * 6;
+        const left = 5 + i * 8;
+        const size = 18 + (i % 4) * 6;
         const duration = 10 + (i % 5) * 2;
         const delay = i * 0.8;
+        const flower = flowers[i % flowers.length];
 
         return (
           <motion.div
             key={i}
-            className="javanese-ornament"
-            initial={{ y: -120, opacity: 0, x: 0, rotate: 0 }}
+            initial={{ y: -80, opacity: 0 }}
             animate={{
-              y: ["-10vh", "110vh"],
-              x: [0, i % 2 === 0 ? 18 : -18, 0],
-              opacity: [0, 0.85, 0.55, 0],
-              rotate: [0, 12, -10, 18],
+              y: ["-10vh", "30vh", "60vh", "110vh"],
+              x: [0, i % 2 === 0 ? 20 : -20, 0],
+              rotate: [0, 20, -15, 25],
+              opacity: [0, 0.9, 0.7, 0],
             }}
             transition={{
               duration,
               delay,
               repeat: Infinity,
-              ease: "linear",
+              ease: "easeInOut",
             }}
             style={{
               position: "absolute",
               left: `${left}%`,
               top: -40,
-              width: size,
-              height: size,
-              border: `1px solid rgba(201,164,108,0.38)`,
-              transform: "rotate(45deg)",
-              background: "rgba(201,164,108,0.06)",
-              boxShadow: "0 0 16px rgba(201,164,108,0.12)",
+              fontSize: `${size}px`,
             }}
-          />
+          >
+            {flower}
+          </motion.div>
         );
       })}
     </div>
   );
 }
-
 function SectionShell({
   children,
   background,
@@ -310,23 +345,23 @@ function OpeningCover({
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0, scale: 0.985 }}
-      transition={{ duration: 0.55 }}
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 999,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: BACKGROUNDS.glow,
-        overflowY: "auto",
-        overflowX: "hidden",
-        padding: "24px 16px",
-      }}
-    >
+   <motion.div
+  initial={{ opacity: 1 }}
+  exit={{ opacity: 0, scale: 1.04, filter: "blur(6px)" }}
+  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+  style={{
+    position: "fixed",
+    inset: 0,
+    zIndex: 999,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: BACKGROUNDS.glow,
+    overflowY: "auto",
+    overflowX: "hidden",
+    padding: "24px 16px",
+  }}
+>
       <BatikOverlay />
       <motion.div
         initial={{ opacity: 0, y: 24, scale: 0.98 }}
@@ -385,20 +420,20 @@ function OpeningCover({
         </motion.p>
 
         <motion.h1
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.34, duration: 0.8 }}
-          style={{
-            margin: "8px 0 4px",
-            fontFamily: FONTS.script,
-            fontSize: "clamp(46px, 14vw, 74px)",
-            lineHeight: 1.1,
-            color: COLORS.gold,
-            textShadow: "0 0 16px rgba(201,164,108,.12)",
-          }}
-        >
-          Alman &amp; Terii
-        </motion.h1>
+  initial={{ opacity: 0, y: 24 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.45, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+  style={{
+    margin: "8px 0 4px",
+    fontFamily: FONTS.script,
+    fontSize: "clamp(46px, 14vw, 74px)",
+    lineHeight: 1.1,
+    color: COLORS.gold,
+    textShadow: "0 0 18px rgba(201,164,108,.18)",
+  }}
+>
+  Alman &amp; Terii
+</motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 12 }}
@@ -509,7 +544,7 @@ function HeroSection() {
         }}
       >
         <motion.img
-          {...revealUp(0.05)}
+          {...revealsoft(0.05)}
           src={IMAGE_GUNUNGAN}
           alt="Gunungan"
           style={{
@@ -541,7 +576,7 @@ function HeroSection() {
         </motion.p>
 
         <motion.h1
-          {...revealUp(0.18)}
+          {...revealsoft(0.18)}
           style={{
             margin: "8px 0 6px",
             fontFamily: FONTS.script,
@@ -555,7 +590,7 @@ function HeroSection() {
         </motion.h1>
 
         <motion.p
-          {...revealUp(0.22)}
+          {...revealsoft(0.22)}
           style={{
             margin: "0 0 26px",
             fontFamily: FONTS.heading,
@@ -568,7 +603,7 @@ function HeroSection() {
         </motion.p>
 
         <motion.p
-          {...revealUp(0.28)}
+          {...revealside(0.28)}
           style={{
             margin: "0 auto 28px",
             maxWidth: 380,
@@ -584,7 +619,7 @@ function HeroSection() {
         </motion.p>
 
         <motion.button
-          {...revealUp(0.34)}
+          {...revealside(0.34)}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={() => {
@@ -617,7 +652,7 @@ function QuranVerseSection() {
   return (
     <SectionShell background={BACKGROUNDS.dark} id="quran-verse">
       <OrnamentalTop />
-      <motion.div {...revealUp()} style={{ textAlign: "center" }}>
+      <motion.div {...revealsoft()} style={{ textAlign: "center" }}>
         <p
           style={{
             margin: 0,
@@ -797,7 +832,7 @@ function CoupleSection() {
 function CountdownBox({ value, label }: { value: number; label: string }) {
   return (
     <motion.div
-      {...revealUp()}
+      {...revealsoft()}
       style={{
         minWidth: 72,
         padding: "14px 12px",
@@ -845,7 +880,7 @@ function SaveTheDateSection() {
       <Title pre="Save The Date" title="26 April 2026" light />
 
       <motion.p
-        {...revealUp(0.06)}
+        {...revealsoft(0.06)}
         style={{
           textAlign: "center",
           margin: "0 0 30px",
@@ -893,7 +928,7 @@ function EventCard({
 }) {
   return (
     <motion.div
-      {...revealUp()}
+      {...revealside()}
       style={{
         borderRadius: 20,
         padding: "24px 20px",
@@ -1117,7 +1152,7 @@ function GiftCard({
 
   return (
     <motion.div
-      {...revealUp()}
+      {...revealsoft()}
       style={{
         padding: "22px 18px",
         borderRadius: 16,
