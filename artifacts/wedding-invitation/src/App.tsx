@@ -304,7 +304,6 @@ function OpeningCover({
           >
             {guestName}
           </p>
-        
         </div>
 
         <button
