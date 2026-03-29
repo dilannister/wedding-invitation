@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Alman &amp; Terii | Undangan Pernikahan</title>
+  <meta name="description" content="Undangan Pernikahan Alman &amp; Terii — 26 April 2026" />
+
+  <!-- Preconnect for Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Preload important assets -->
+  <link rel="preload" as="image" href="images/gunungan.webp" fetchpriority="high" />
+  <link rel="preload" as="audio" href="music/wedding-music.mp3" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- ==================== OPENING COVER ==================== -->
+    <div id="cover">
+      <div class="batik-bg"></div>
+      <div class="radial-glow"></div>
+
+      <div class="content">
+        <img
+          class="gunungan-img"
+          src="images/gunungan.webp"
+          alt=""
+          width="180"
+          height="180"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+    </div>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <div id="main">
+
+      <!-- Audio element -->
+      <audio id="wedding-audio" src="music/wedding-music.mp3" loop preload="auto"></audio>
+
+      <!-- Floating ornaments container -->
+      <div id="floaters"></div>
+
+      <!-- Music widget (fixed) -->
+      <div id="music-widget"></div>
+
+      <!-- HERO -->
+      <section id="hero"></section>
+
+      <!-- QURAN VERSE -->
+      <section id="quran"></section>
+
+      <!-- COUPLE -->
+      <section id="couple"></section>
+
+      <!-- SAVE THE DATE / COUNTDOWN -->
+      <section id="save-the-date"></section>
+
+      <!-- WEDDING EVENTS -->
+      <section id="events"></section>
+
+      <!-- RSVP -->
+      <section id="rsvp"></section>
+
+      <!-- WEDDING GIFT -->
+      <section id="gift"></section>
+
+      <!-- CLOSING -->
+      <section id="closing"></section>
+
+    </div><!-- /#main -->
+
+  </div><!-- /#app -->
+
+  <script src="script.js"></script>
+</body>
+</html>
