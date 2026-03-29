@@ -65,7 +65,7 @@ function buildCover(){
     +'<p class="sub-label">The Wedding Of</p>'
     +'<h1 class="couple-name">Alman &amp; Terii</h1>'
     +'<p class="event-date">26 April 2026</p>'
-    +'<div class="guest-box"><p class="to-label">Kepada Yth.</p><p class="guest-name">'+esc(g)+'</p><p class="sub-guest">Bapak / Ibu / Saudara / i</p></div>'
+    +'<div class="guest-box"><p class="to-label">Kepada Yth.</p><p class="guest-name">'+esc(g)+'</p>'
     +'<button id="btn-open">Buka Undangan</button>'
     +'</div>';
   document.getElementById('btn-open').addEventListener('click', openInvitation);
@@ -311,7 +311,7 @@ var playing = false;
 function buildMusicWidget(){
   document.getElementById('music-widget').innerHTML =
     '<div id="music-panel">'
-    +'<p class="panel-title">🎵 Musik Pengiring</p>'
+    +'<p class="panel-title">🎵 Lana Del Rey - Young and Beautiful</p>'
     +'<div class="panel-btns">'
     +'<button class="panel-btn" id="btn-pp" title="Play/Pause">⏸</button>'
     +'<button class="panel-btn" id="btn-mute" title="Mute">🔊</button>'
