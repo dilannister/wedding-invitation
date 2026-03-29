@@ -77,7 +77,7 @@ function buildCover() {
       <div class="guest-box">
         <p class="to-label">Kepada Yth.</p>
         <p class="guest-name">${escapeHtml(guestName)}</p>
-        <p class="sub-guest">Bapak / Ibu / Saudara / i</p>
+        
       </div>
       <button id="btn-open">Buka Undangan</button>
     </div>
@@ -213,11 +213,23 @@ function buildSaveTheDate() {
   const el = document.getElementById('save-the-date');
   el.innerHTML = `
     <div class="section-corners">
-      <div class="corner tl" style="top:14px;left:14px;"><img src="/ornaments/kawung.png" style="width:65px;opacity:.8;" alt=""/></div>
-      <div class="corner tr" style="top:14px;right:14px;transform:scaleX(-1);"><img src="/ornaments/kawung.png" style="width:65px;opacity:.8;" alt=""/></div>
-      <div class="corner bl" style="bottom:14px;left:14px;transform:rotate(180deg) scaleX(-1);"><img src="/ornaments/kawung.png" style="width:65px;opacity:.8;" alt=""/></div>
-      <div class="corner br" style="bottom:14px;right:14px;transform:rotate(180deg);"><img src="/ornaments/kawung.png" style="width:65px;opacity:.8;" alt=""/></div>
+      <div class="corner tl" style="top:14px;left:14px;">
+        <img src="/ornaments/kawung.png" style="width:65px;opacity:.8;display:block;" alt=""/>
+      </div>
+
+      <div class="corner tr" style="top:14px;right:14px;">
+        <img src="/ornaments/kawung.png" style="width:65px;opacity:.8;display:block;transform:scaleX(-1);transform-origin:center;" alt=""/>
+      </div>
+
+      <div class="corner bl" style="bottom:14px;left:14px;">
+        <img src="/ornaments/kawung.png" style="width:65px;opacity:.8;display:block;transform:rotate(180deg) scaleX(-1);transform-origin:center;" alt=""/>
+      </div>
+
+      <div class="corner br" style="bottom:14px;right:14px;">
+        <img src="/ornaments/kawung.png" style="width:65px;opacity:.8;display:block;transform:rotate(180deg);transform-origin:center;" alt=""/>
+      </div>
     </div>
+
     <div class="line-maroon-h top"></div>
     <div class="line-maroon-h bottom"></div>
     <div class="inner">
