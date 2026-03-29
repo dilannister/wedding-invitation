@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import "./styles.css";
+import "./index.css";
 
 const GUNUNGAN = "/images/gunungan.png";
 const GROOM = "/images/groom.png";
