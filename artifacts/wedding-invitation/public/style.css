@@ -2,7 +2,9 @@
 
 @font-face {
   font-family: 'Exmouth';
-  src: url('/fonts/exmouth.ttf') format('truetype');
+  src: url('/fonts/exmouth.woff2') format('woff2'),
+       url('/fonts/exmouth.ttf') format('truetype');
+  font-display: swap;
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
