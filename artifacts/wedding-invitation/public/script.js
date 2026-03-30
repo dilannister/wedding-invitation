@@ -202,7 +202,7 @@ function buildEvents(){
     +sectionTitle('Waktu &amp; Tempat','Detail Acara','dark')
     +'<div class="events-list">'
     +eventCard('Akad Nikah','Ijab Kabul','Minggu, 26 April 2026','09.00 WIB','from-left')
-    +eventCard('Resepsi Pernikahan','Wedding Reception','Minggu, 26 April 2026','10.00 WIB \u2013 Selesai','from-right')
+    +eventCard('Resepsi Pernikahan','Wedding Reception','Minggu, 26 April 2026','10.00 WIB \u2013 16.00 WIB','from-right')
     +'</div></div>';
 }
 
