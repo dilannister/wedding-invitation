@@ -100,7 +100,7 @@ function buildQuran(){
     +'<div class="line-gold-h bottom"></div>'
     +'<div class="inner">'
     +'<p class="source reveal">QS. Adz-Dzariyat : 49</p>'
-    +'<p class="verse reveal">"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya."</p>'
+    +'<p class="verse reveal">"Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah)"</p>'
     +'<div class="gold-divider reveal"><div class="line left"></div>'+starSVG(14)+'<div class="line right"></div></div>'
     +'<p class="blessing reveal">Semoga dengan bersatunya kami dalam ikatan suci pernikahan ini, menjadi awal perjalanan hidup yang penuh keberkahan, kasih sayang, dan kebahagiaan.</p>'
     +'</div>';
