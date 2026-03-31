@@ -58,13 +58,83 @@ body{background:#0d0508;color:var(--cream);-webkit-font-smoothing:antialiased;ov
 #cover .sub-label{font-family:var(--font-ui);font-size:11px;letter-spacing:.4em;color:var(--cream);opacity:.6;text-transform:uppercase;margin-bottom:4px;animation:fadeUp .7s .3s ease both}
 #cover .couple-name{font-family:var(--font-script);font-size:clamp(52px,12vw,80px);color:var(--gold);line-height:1.1;margin:4px 0;text-shadow:0 0 30px rgba(201,164,108,.4);animation:fadeScale .9s .5s ease both}
 #cover .event-date{font-family:var(--font-heading);font-size:clamp(14px,2.5vw,18px);color:var(--gold);opacity:.8;letter-spacing:.15em;margin-top:4px;animation:fadeUp .7s .7s ease both}
-.guest-box{margin-top:22px;padding-right:18px 28px;background:linear-gradient(135deg,rgba(201,164,108,.06),rgba(255,255,255,.02));border:1px solid rgba(201,164,108,.25);border-radius:12px;text-align:center;animation:fadeUp .7s .9s ease both}
-.guest-box .to-label{font-family:var(--font-ui);font-size:10px;letter-spacing:.3em;color:var(--cream);opacity:.5;text-transform:uppercase;margin-bottom:6px}
-.guest-box .guest-name{font-family:var(--font-body);font-size:clamp(15px,3vw,19px);color:var(--cream);opacity:.85}
-.guest-box .sub-guest{font-family:var(--font-ui);font-size:10px;letter-spacing:.2em;color:var(--cream);opacity:.4;text-transform:uppercase;margin-top:4px}
-#btn-open{margin-top:24px;padding:14px 44px;background:linear-gradient(135deg,var(--gold),var(--gold-light),var(--gold));border-radius:9999px;color:var(--dark);font-family:var(--font-ui);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;box-shadow:0 4px 20px rgba(201,164,108,.3);transition:transform .15s,box-shadow .15s;animation:fadeUp .7s 1.1s ease both}
-#btn-open:hover{transform:scale(1.04);box-shadow:0 0 30px rgba(201,164,108,.5)}
-#btn-open:active{transform:scale(.97)}
+/* Container Box Tamu */
+.guest-box {
+  margin-top: 32px;
+  /* Perbaikan: padding dibuat simetris (atas-bawah 24px, kiri-kanan 20px) */
+  padding: 24px 20px; 
+  background: linear-gradient(135deg, rgba(201, 164, 108, 0.08), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(201, 164, 108, 0.3);
+  border-radius: 16px; 
+  text-align: center;
+  backdrop-filter: blur(4px); /* Efek glassmorphism halus */
+  box-shadow: inset 0 0 15px rgba(201, 164, 108, 0.05);
+  animation: fadeUp .8s .9s ease both;
+  max-width: 300px; /* Menjaga agar kotak tidak terlalu lebar di layar besar */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Label "KEPADA YTH" */
+.guest-box .to-label {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 0.4em; /* Lebih renggang agar terlihat premium */
+  color: var(--gold-light); 
+  opacity: 0.7;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+/* Nama Tamu */
+.guest-box .guest-name {
+  font-family: var(--font-body);
+  font-size: clamp(16px, 4vw, 20px);
+  color: #fff; /* Putih bersih agar kontras dengan background maroon */
+  font-weight: 500;
+  line-height: 1.4;
+  display: block;
+}
+
+/* Keterangan Tambahan (jika ada) */
+.guest-box .sub-guest {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--cream);
+  opacity: 0.5;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+/* Tombol Buka Undangan */
+#btn-open {
+  margin-top: 28px;
+  padding: 14px 48px;
+  /* Gradient emas yang lebih tajam dan elegan */
+  background: linear-gradient(135deg, #D4AF37, #F1D382, #D4AF37); 
+  border: none;
+  border-radius: 50px;
+  color: #2D1B1B; /* Warna teks gelap (deep maroon) agar mudah dibaca di atas emas */
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(201, 164, 108, 0.2);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: fadeUp .8s 1.2s ease both;
+}
+
+#btn-open:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(201, 164, 108, 0.4);
+}
+
+#btn-open:active {
+  transform: translateY(1px) scale(0.98);
+}
 
 /* MAIN */
 #main{opacity:0;transition:opacity .6s ease}
