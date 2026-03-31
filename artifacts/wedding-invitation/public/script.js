@@ -84,10 +84,6 @@ function buildHero(){
     +'<h1 class="couple-name-hero reveal">Alman &amp; Terii</h1>'
     +'<p class="date-hero reveal">26 April 2026</p>'
     +'<p class="intro-text reveal">Dengan penuh rasa syukur kepada Allah SWT, kami bermaksud menyelenggarakan pernikahan kami dan mengundang Bapak/Ibu/Saudara/i untuk hadir serta memberikan doa restu.</p>'
-    +'<button id="btn-scroll" class="reveal">Lihat Undangan</button>'
-    +'<div class="scroll-arrow reveal"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A46C" stroke-width="2" opacity="0.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>'
-    +'</div>';
-  document.getElementById('btn-scroll').addEventListener('click', function(){ document.getElementById('quran').scrollIntoView({behavior:'smooth'}); });
 }
 
 // ─── QURAN ─────────────────────────────────────────────────────────────────

@@ -249,21 +249,141 @@ section{position:relative;overflow:hidden}
   max-width: 90%;
   margin: 0 auto;
 }
-/* COUPLE */
-#couple{padding:110px 0;background:linear-gradient(180deg,#f0e6d6 0%,#f5ede3 40%,#ece0cc 70%,#f0e6d6 100%)}
-#couple .inner{position:relative;max-width:480px;margin:0 auto;padding:0 24px}
-.couple-card-wrap{background:rgba(30,12,14,.06);border:1px solid rgba(75,31,40,.12);border-radius:16px;padding:60px 30px;box-shadow:0 20px 60px rgba(0,0,0,.08)}
-.couple-person{text-align:center}
-.couple-photo-ring{width:clamp(150px,32vw,190px);height:clamp(150px,32vw,190px);border-radius:50%;overflow:hidden;margin:0 auto 20px;border:2px solid rgba(201,164,108,.5);background:linear-gradient(145deg,rgba(75,31,40,.3),rgba(201,164,108,.1))}
-.couple-photo-ring img{width:100%;height:100%;object-fit:cover}
-.couple-person .name{font-family:var(--font-script);font-size:clamp(30px,6vw,40px);color:var(--maroon)}
-.couple-person .role{font-family:var(--font-ui);font-size:10px;letter-spacing:.35em;color:var(--maroon);text-transform:uppercase;opacity:.65;margin:4px 0 12px}
-.couple-person .birthdate{font-family:var(--font-body);font-size:clamp(13px,2.2vw,15px);color:var(--maroon);opacity:.7;line-height:1.75}
-.couple-person .parents{font-family:var(--font-body);font-size:clamp(13px,2.2vw,15px);color:var(--maroon);opacity:.6;line-height:1.75;font-style:italic}
-.couple-divider{display:flex;flex-direction:column;align-items:center;gap:14px;margin:40px 0}
-.couple-divider .vline{width:1px;height:50px;background:rgba(75,31,40,.3)}
-.couple-divider .amp{font-family:var(--font-script);font-size:46px;color:var(--maroon);opacity:.85}
-.couple-footer{font-family:var(--font-body);font-size:clamp(13px,2vw,16px);color:var(--maroon);opacity:.65;line-height:1.85;font-style:italic;text-align:center;margin-top:36px}
+/* --- SECTION COUPLE (PREMIUM REFINED) --- */
+#couple {
+  padding: 120px 0;
+  /* Background krem padat agar render lebih stabil */
+  background: #fdf8f2; 
+  position: relative;
+}
+
+#couple .inner {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* 1. BISMILLAH - Super Bold & Elegant */
+.bismillah {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 800; /* Bold maksimal untuk ketegasan */
+  letter-spacing: 0.5em; /* Spasi lebar khas desain mewah */
+  color: #4b1f28;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 45px;
+  display: block;
+  opacity: 1; /* Tanpa transparansi agar tajam */
+}
+
+/* 2. KARTU MEMPELAI */
+.couple-card-wrap {
+  /* Menggunakan background putih bersih agar foto 'pop-out' */
+  background: #ffffff; 
+  border: 1px solid rgba(201, 164, 108, 0.25);
+  border-radius: 20px;
+  padding: 70px 25px;
+  /* Shadow sangat lembut untuk efek kedalaman */
+  box-shadow: 0 15px 45px rgba(75, 31, 40, 0.04);
+}
+
+/* 3. FOTO RING - Lebih Bersih */
+.couple-photo-ring {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 30px;
+  /* Frame putih tebal + garis emas tipis di luar */
+  border: 4px solid #fff;
+  outline: 1px solid rgba(201, 164, 108, 0.4);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.couple-photo-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 4. NAMA & DATA - Lebih Tegas */
+.couple-person .name {
+  font-family: var(--font-script);
+  font-size: clamp(34px, 7.5vw, 44px);
+  color: #4b1f28;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.couple-person .role {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  /* Menggunakan warna emas untuk kontras dengan nama */
+  color: #c9a46c; 
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.couple-person .birthdate {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: #4b1f28;
+  font-weight: 600; /* Lebih tegas untuk tanggal */
+  opacity: 0.9;
+}
+
+.couple-person .parents {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: #4b1f28;
+  opacity: 0.7;
+  line-height: 1.8;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+/* 5. DIVIDER TENGAH */
+.couple-divider {
+  margin: 45px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.couple-divider .vline {
+  width: 1px;
+  height: 50px;
+  /* Gradasi memudar di ujung garis */
+  background: linear-gradient(to bottom, transparent, #c9a46c, transparent);
+  opacity: 0.6;
+}
+
+.couple-divider .amp {
+  font-family: var(--font-script);
+  font-size: 48px;
+  color: #4b1f28;
+  line-height: 1;
+}
+
+/* 6. FOOTER */
+.couple-footer {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: #4b1f28;
+  opacity: 0.75;
+  line-height: 2;
+  font-style: italic;
+  text-align: center;
+  margin-top: 55px;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* SAVE THE DATE */
 #save-the-date{padding:100px 0;background:linear-gradient(180deg,#f0e6d6 0%,#f5ede3 40%,#ece0cc 70%,#f0e6d6 100%)}
