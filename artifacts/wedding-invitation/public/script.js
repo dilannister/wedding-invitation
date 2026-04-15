@@ -241,24 +241,31 @@ function submitRsvp(e){
 
   fetch(SCRIPT_URL, {
     method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify(data)
   })
-  .then(res => res.text())
   .then(() => {
 
     document.getElementById('rsvp-content').innerHTML =
-      '<div class="rsvp-success"><div class="emoji">🎊</div><h3>Terima Kasih!</h3>'
+      '<div class="rsvp-success">'
+      +'<div class="emoji">🎊</div>'
+      +'<h3>Terima Kasih!</h3>'
       +'<p class="thank-you">Konfirmasi kehadiran Anda telah kami terima.</p>'
-      +'<p class="joy-msg">Kami menantikan kehadiran Anda dengan penuh sukacita.</p></div>';
+      +'<p class="joy-msg">Kami menantikan kehadiran Anda dengan penuh sukacita.</p>'
+      +'</div>';
 
   })
   .catch(() => {
+
     btn.disabled = false;
     btn.textContent = 'Kirim Konfirmasi';
     alert("Gagal mengirim RSVP");
+
   });
 }
-
 // ─── GIFT ──────────────────────────────────────────────────────────────────
 function giftCard(type, bank, owner, num){
   return '<div class="gift-card reveal">'
