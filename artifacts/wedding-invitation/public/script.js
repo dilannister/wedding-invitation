@@ -1,5 +1,5 @@
 'use strict';
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyeGTUdw7iO9d4WB5ICweEGkbBaVBRNrdCHEpXuMfKD8FhVxI3QbCnteN7JlwQtH1lxaQ/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz9R-dS4QSfKhGcXRtbaATfq4xLBQwAvaObj8x7PLdgn6B8vOq6MyrmKjOlYIftvhIt/exec";
 // ─── HELPERS ───────────────────────────────────────────────────────────────
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 function pad(n){ return String(n).padStart(2,'0'); }
@@ -275,42 +275,45 @@ function submitRsvp(e){
 
 }
 
-
-
 function loadUcapan(){
+  fetch(SCRIPT_URL + "?t=" + Date.now())
+    .then(res => res.text())
+    .then(text => {
 
-  fetch(SCRIPT_URL+"?t="+Date.now())
-  .then(res=>res.json())
-  .then(function(data){
+      try {
+        var data = JSON.parse(text);
 
-    var html="";
+        var html = "";
 
-    if(!data || data.length===0){
-      html="<p>Belum ada ucapan.</p>";
-    }else{
+        if(!data || data.length === 0){
+          html = "<p>Belum ada ucapan.</p>";
+        } else {
+          data.reverse().forEach(function(item){
+            html +=
+              '<div class="ucapan-card">'+
+              '<div class="ucapan-head">'+
+              '<span class="ucapan-nama">'+item.name+'</span>'+
+              '<span class="ucapan-status">'+item.attendance+'</span>'+
+              '</div>'+
+              '<div class="ucapan-pesan">'+item.message+'</div>'+
+              '</div>';
+          });
+        }
 
-      data.reverse().forEach(function(item){
+        document.getElementById("ucapan-list").innerHTML = html;
 
-        html +=
-        '<div class="ucapan-card">'+
-        '<div class="ucapan-head">'+
-        '<span class="ucapan-nama">'+item.name+'</span>'+
-        '<span class="ucapan-status">'+item.attendance+'</span>'+
-        '</div>'+
-        '<div class="ucapan-pesan">'+item.message+'</div>'+
-        '</div>';
+      } catch(e){
+        console.error("RESPON BUKAN JSON:", text);
+        document.getElementById("ucapan-list").innerHTML =
+          "Data tidak valid dari server";
+      }
 
-      });
-
-    }
-
-    document.getElementById("ucapan-list").innerHTML = html;
-
-  })
-  .catch(function(){
-    document.getElementById("ucapan-list").innerHTML="Gagal memuat ucapan";
-  });
-
+    })
+    .catch(function(err){
+      console.error(err);
+      document.getElementById("ucapan-list").innerHTML =
+        "Gagal memuat ucapan";
+    });
 }
 // ─── GIFT ──────────────────────────────────────────────────────────────────
 function giftCard(type, bank, owner, num){
