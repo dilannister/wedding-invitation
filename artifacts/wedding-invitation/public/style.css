@@ -436,7 +436,84 @@ section{position:relative;overflow:hidden}
 .rsvp-success h3{font-family:var(--font-heading);font-size:24px;color:var(--maroon);margin-bottom:12px}
 .rsvp-success .thank-you{font-family:var(--font-body);font-size:16px;color:var(--maroon);opacity:.75;line-height:1.8;font-style:italic;margin-bottom:8px}
 .rsvp-success .joy-msg{font-family:var(--font-body);font-size:15px;color:var(--maroon);opacity:.65;line-height:1.8;font-style:italic}
+/* LIST UCAPAN */
+.guest-messages{
+margin-top:50px;
+}
 
+.guest-title{
+font-family:var(--font-heading);
+font-size:22px;
+color:var(--maroon);
+text-align:center;
+margin-bottom:22px;
+letter-spacing:.08em;
+}
+
+/* CONTAINER UCAPAN */
+#ucapan-list{
+display:flex;
+flex-direction:column;
+gap:16px;
+}
+
+/* CARD UCAPAN */
+.ucapan-card{
+background:rgba(75,31,40,.06);
+border:1px solid rgba(75,31,40,.18);
+border-radius:14px;
+padding:18px 20px;
+animation:fadeUp .6s ease;
+}
+
+/* HEADER */
+.ucapan-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:8px;
+}
+
+/* NAMA */
+.ucapan-nama{
+font-family:var(--font-ui);
+font-size:13px;
+letter-spacing:.12em;
+color:var(--maroon);
+font-weight:700;
+}
+
+/* STATUS HADIR */
+.ucapan-status{
+font-size:11px;
+padding:3px 10px;
+border-radius:999px;
+background:rgba(75,31,40,.15);
+color:var(--maroon);
+font-family:var(--font-ui);
+}
+
+/* PESAN */
+.ucapan-pesan{
+font-family:var(--font-body);
+font-size:14px;
+line-height:1.7;
+color:var(--maroon);
+opacity:.75;
+font-style:italic;
+}
+
+/* ANIMASI */
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(14px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
 /* GIFT */
 #gift{padding:100px 0;background:linear-gradient(180deg,#1a0d10 0%,#2a1618 30%,#3a1820 60%,#2a1618 100%)}
 #gift .inner{position:relative;max-width:520px;margin:0 auto;padding:0 24px}

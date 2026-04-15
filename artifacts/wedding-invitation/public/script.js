@@ -204,65 +204,39 @@ function buildEvents(){
 
 // ─── RSVP ──────────────────────────────────────────────────────────────────
 function buildRsvp(){
-
   var g = getGuest();
   var ph = (g !== 'Tamu Undangan') ? esc(g) : 'Masukkan nama Anda...';
 
-  var html = '';
+  document.getElementById('rsvp').innerHTML =
+    '<div class="batik-overlay light" style="opacity:.2;"></div>'
+    +'<div class="section-glow-light"></div>'
+    +lightCorners()
+    +'<div class="line-maroon-h top"></div>'
+    +'<div class="line-maroon-h bottom"></div>'
+    +'<div class="inner">'
+    +sectionTitle(null,'KONFIRMASI KEHADIRAN','light')
+    +'<p class="intro reveal">Kehadiran dan doa restu Anda merupakan kebahagiaan yang sangat berarti bagi kami.</p>'
+    +'<p class="intro2 reveal">Silakan konfirmasi kehadiran Anda melalui form RSVP yang tersedia. Kami sangat menantikan kehadiran Anda di hari bahagia kami.</p>'
+    +'<div id="rsvp-content" class="reveal">'
+    +'<form class="rsvp-form" id="rsvp-form">'
+    +'<div><label class="form-label" for="ri-name">Nama Lengkap</label><input class="form-input" type="text" id="ri-name" required placeholder="'+ph+'"/></div>'
+    +'<div><label class="form-label" for="ri-att">Kehadiran</label><div class="form-select-wrap"><select class="form-select" id="ri-att"><option value="Hadir">Ya, saya akan hadir</option><option value="Tidak Hadir">Maaf, saya tidak bisa hadir</option><option value="Mungkin">Mungkin hadir</option></select></div></div>'
+    +'<div><label class="form-label" for="ri-msg">Pesan &amp; Doa</label><textarea class="form-textarea" id="ri-msg" rows="4" placeholder="Tuliskan ucapan dan doa terbaik Anda..."></textarea></div>'
+    +'<button type="submit" id="btn-submit">Kirim Konfirmasi</button>'
+    +'</form></div>'
 
-  html += '<div class="batik-overlay light" style="opacity:.2;"></div>';
-  html += '<div class="section-glow-light"></div>';
-  html += lightCorners();
-  html += '<div class="line-maroon-h top"></div>';
-  html += '<div class="line-maroon-h bottom"></div>';
+    +'<div class="guest-messages reveal">'
+    +'<h3 class="guest-title">Ucapan & Doa</h3>'
+    +'<div id="ucapan-list">Memuat ucapan...</div>'
+    +'</div>'
 
-  html += '<div class="inner">';
-  html += sectionTitle(null,'KONFIRMASI KEHADIRAN','light');
-
-  html += '<p class="intro reveal">Kehadiran dan doa restu Anda merupakan kebahagiaan yang sangat berarti bagi kami.</p>';
-  html += '<p class="intro2 reveal">Silakan konfirmasi kehadiran Anda melalui form RSVP yang tersedia.</p>';
-
-  html += '<div id="rsvp-content" class="reveal">';
-
-  html += '<form class="rsvp-form" id="rsvp-form">';
-
-  html += '<div>';
-  html += '<label class="form-label">Nama Lengkap</label>';
-  html += '<input class="form-input" type="text" id="ri-name" required placeholder="'+ph+'"/>';
-  html += '</div>';
-
-  html += '<div>';
-  html += '<label class="form-label">Kehadiran</label>';
-  html += '<select class="form-select" id="ri-att">';
-  html += '<option value="Hadir">Ya, saya akan hadir</option>';
-  html += '<option value="Tidak Hadir">Maaf, saya tidak bisa hadir</option>';
-  html += '<option value="Mungkin">Mungkin hadir</option>';
-  html += '</select>';
-  html += '</div>';
-
-  html += '<div>';
-  html += '<label class="form-label">Pesan & Doa</label>';
-  html += '<textarea class="form-textarea" id="ri-msg" rows="4" placeholder="Tuliskan ucapan dan doa terbaik Anda..."></textarea>';
-  html += '</div>';
-
-  html += '<button type="submit" id="btn-submit">Kirim Konfirmasi</button>';
-
-  html += '</form>';
-  html += '</div>';
-
-  html += '<div class="guest-messages reveal">';
-  html += '<h3 class="guest-title">Ucapan & Doa</h3>';
-  html += '<div id="ucapan-list">Memuat ucapan...</div>';
-  html += '</div>';
-
-  html += '</div>';
-
-  document.getElementById('rsvp').innerHTML = html;
+    +'</div>';
 
   document.getElementById('rsvp-form').addEventListener('submit', submitRsvp);
 
   loadUcapan();
 }
+
 
 
 function submitRsvp(e){
@@ -286,62 +260,55 @@ function submitRsvp(e){
       "Content-Type":"application/json"
     },
     body:JSON.stringify(data)
-  })
-  .then(function(){
+  });
+
+  setTimeout(function(){
 
     document.getElementById('rsvp-content').innerHTML =
-      '<div class="rsvp-success">'+
-      '<div class="emoji">🎊</div>'+
-      '<h3>Terima Kasih!</h3>'+
-      '<p>Konfirmasi kehadiran Anda telah kami terima.</p>'+
-      '</div>';
+      '<div class="rsvp-success"><div class="emoji">🎊</div><h3>Terima Kasih!</h3>'
+      +'<p class="thank-you">Konfirmasi kehadiran Anda telah kami terima.</p>'
+      +'<p class="joy-msg">Kami menantikan kehadiran Anda dengan penuh sukacita.</p></div>';
 
     loadUcapan();
 
-  })
-  .catch(function(){
-
-    btn.disabled=false;
-    btn.textContent='Kirim Konfirmasi';
-    alert("Gagal mengirim RSVP");
-
-  });
+  },1200);
 
 }
 
 
+
 function loadUcapan(){
 
-  fetch(SCRIPT_URL)
-  .then(function(res){ return res.json(); })
+  fetch(SCRIPT_URL+"?t="+Date.now())
+  .then(res=>res.json())
   .then(function(data){
 
     var html="";
 
     if(!data || data.length===0){
-      html='<p>Belum ada ucapan.</p>';
+      html="<p>Belum ada ucapan.</p>";
     }else{
 
       data.reverse().forEach(function(item){
 
-        html+=
-        '<div class="ucapan-item">'+
-        '<b>'+item.name+'</b><br>'+
-        '<span>'+item.attendance+'</span><br>'+
-        '<p>'+item.message+'</p>'+
+        html +=
+        '<div class="ucapan-card">'+
+        '<div class="ucapan-head">'+
+        '<span class="ucapan-nama">'+item.name+'</span>'+
+        '<span class="ucapan-status">'+item.attendance+'</span>'+
+        '</div>'+
+        '<div class="ucapan-pesan">'+item.message+'</div>'+
         '</div>';
 
       });
 
     }
 
-    document.getElementById("ucapan-list").innerHTML=html;
+    document.getElementById("ucapan-list").innerHTML = html;
 
   })
   .catch(function(){
-
     document.getElementById("ucapan-list").innerHTML="Gagal memuat ucapan";
-
   });
 
 }
