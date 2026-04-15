@@ -1,5 +1,5 @@
 'use strict';
-
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby3fMN_5syVixVZ-KpcGFshvWptaVeb5A4ukH43zJjVa3lNkrROFCdp7BjfcqOcrhZUkw/exec";
 // ─── HELPERS ───────────────────────────────────────────────────────────────
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 function pad(n){ return String(n).padStart(2,'0'); }
@@ -228,16 +228,35 @@ function buildRsvp(){
 
 function submitRsvp(e){
   e.preventDefault();
+
   var btn = document.getElementById('btn-submit');
-  btn.disabled = true; btn.textContent = 'Mengirim...';
-  var data = { name: document.getElementById('ri-name').value, attendance: document.getElementById('ri-att').value, message: document.getElementById('ri-msg').value, at: new Date().toISOString() };
-  try{ var arr = JSON.parse(localStorage.getItem('rsvp')||'[]'); arr.push(data); localStorage.setItem('rsvp', JSON.stringify(arr)); }catch(ex){}
-  setTimeout(function(){
+  btn.disabled = true;
+  btn.textContent = 'Mengirim...';
+
+  var data = {
+    name: document.getElementById('ri-name').value,
+    attendance: document.getElementById('ri-att').value,
+    message: document.getElementById('ri-msg').value
+  };
+
+  fetch(SCRIPT_URL, {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(res => res.text())
+  .then(() => {
+
     document.getElementById('rsvp-content').innerHTML =
       '<div class="rsvp-success"><div class="emoji">🎊</div><h3>Terima Kasih!</h3>'
       +'<p class="thank-you">Konfirmasi kehadiran Anda telah kami terima.</p>'
       +'<p class="joy-msg">Kami menantikan kehadiran Anda dengan penuh sukacita.</p></div>';
-  }, 1200);
+
+  })
+  .catch(() => {
+    btn.disabled = false;
+    btn.textContent = 'Kirim Konfirmasi';
+    alert("Gagal mengirim RSVP");
+  });
 }
 
 // ─── GIFT ──────────────────────────────────────────────────────────────────
