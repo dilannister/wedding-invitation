@@ -1,5 +1,5 @@
 'use strict';
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz9R-dS4QSfKhGcXRtbaATfq4xLBQwAvaObj8x7PLdgn6B8vOq6MyrmKjOlYIftvhIt/exec;
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbya3fSSO3q4HF30jDGsroqfLAxzGqqtlsGFAe0q4bmfMSFlAFx7HCkGo8y8AHRiABxC/exec";
 // ─── HELPERS ───────────────────────────────────────────────────────────────
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 function pad(n){ return String(n).padStart(2,'0'); }
@@ -232,15 +232,19 @@ function buildRsvp(){
 
     +'</div>';
 
-  document.getElementById('rsvp-form').addEventListener('submit', submitRsvp);
+ setTimeout(function () {
+  var form = document.getElementById('rsvp-form');
+
+  if (form) {
+    form.addEventListener('submit', submitRsvp);
+  }
 
   loadUcapan();
-}
+}, 0);
 
 
 
 function submitRsvp(e){
-
   e.preventDefault();
 
   var btn = document.getElementById('btn-submit');
@@ -253,60 +257,59 @@ function submitRsvp(e){
     message: document.getElementById('ri-msg').value
   };
 
-  fetch(SCRIPT_URL,{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json"
+  fetch(SCRIPT_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
     },
-    body:JSON.stringify(data)
-  });
-
-  setTimeout(function(){
-
+    body: JSON.stringify(data)
+  })
+  .then(function(res){
+    return res.text();
+  })
+  .then(function(){
     document.getElementById('rsvp-content').innerHTML =
       '<div class="rsvp-success"><div class="emoji">🎊</div><h3>Terima Kasih!</h3>'
       +'<p class="thank-you">Konfirmasi kehadiran Anda telah kami terima.</p>'
       +'<p class="joy-msg">Kami menantikan kehadiran Anda dengan penuh sukacita.</p></div>';
 
     loadUcapan();
+  })
+  .catch(function(err){
+    console.log(err);
 
-  },1200);
+    btn.disabled = false;
+    btn.textContent = 'Kirim Konfirmasi';
 
+    alert("Gagal mengirim RSVP. Coba lagi.");
+  });
 }
 
 function loadUcapan(){
   fetch(SCRIPT_URL + "?t=" + Date.now())
-    .then(res => res.text())
-    .then(text => {
+    .then(function(res){
+      return res.json();
+    })
+    .then(function(data){
 
-      try {
-        var data = JSON.parse(text);
+      var html = "";
 
-        var html = "";
-
-        if(!data || data.length === 0){
-          html = "<p>Belum ada ucapan.</p>";
-        } else {
-          data.reverse().forEach(function(item){
-            html +=
-  '<div class="ucapan-card">'+
-  '<div class="ucapan-head">'+
-  '<span class="ucapan-nama">'+(item.name || '-')+'</span>'+
-  '<span class="ucapan-status">'+(item.attendance || '-')+'</span>'+
-  '</div>'+
-  '<div class="ucapan-pesan">'+(item.message || '-')+'</div>'+
-  '</div>';
-          });
-        }
-
-        document.getElementById("ucapan-list").innerHTML = html;
-
-      } catch(e){
-        console.error("RESPON BUKAN JSON:", text);
-        document.getElementById("ucapan-list").innerHTML =
-          "Data tidak valid dari server";
+      if(!Array.isArray(data) || data.length === 0){
+        html = "<p>Belum ada ucapan.</p>";
+      } else {
+        data.reverse().forEach(function(item){
+          html +=
+            '<div class="ucapan-card">'+
+            '<div class="ucapan-head">'+
+            '<span class="ucapan-nama">'+(item.name || '-')+'</span>'+
+            '<span class="ucapan-status">'+(item.attendance || '-')+'</span>'+
+            '</div>'+
+            '<div class="ucapan-pesan">'+(item.message || '-')+'</div>'+
+            '</div>';
+        });
       }
 
+      document.getElementById("ucapan-list").innerHTML = html;
     })
     .catch(function(err){
       console.error(err);
