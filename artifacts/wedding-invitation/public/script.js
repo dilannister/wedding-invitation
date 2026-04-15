@@ -206,24 +206,63 @@ function buildEvents(){
 function buildRsvp(){
   var g = getGuest();
   var ph = (g !== 'Tamu Undangan') ? esc(g) : 'Masukkan nama Anda...';
-  document.getElementById('rsvp').innerHTML =
-    '<div class="batik-overlay light" style="opacity:.2;"></div>'
-    +'<div class="section-glow-light"></div>'
-    +lightCorners()
-    +'<div class="line-maroon-h top"></div>'
-    +'<div class="line-maroon-h bottom"></div>'
-    +'<div class="inner">'
-    +sectionTitle(null,'KONFIRMASI KEHADIRAN','light')
-    +'<p class="intro reveal">Kehadiran dan doa restu Anda merupakan kebahagiaan yang sangat berarti bagi kami.</p>'
-    +'<p class="intro2 reveal">Silakan konfirmasi kehadiran Anda melalui form RSVP yang tersedia. Kami sangat menantikan kehadiran Anda di hari bahagia kami.</p>'
-    +'<div id="rsvp-content" class="reveal">'
-    +'<form class="rsvp-form" id="rsvp-form">'
-    +'<div><label class="form-label" for="ri-name">Nama Lengkap</label><input class="form-input" type="text" id="ri-name" required placeholder="'+ph+'"/></div>'
-    +'<div><label class="form-label" for="ri-att">Kehadiran</label><div class="form-select-wrap"><select class="form-select" id="ri-att"><option value="hadir">Ya, saya akan hadir</option><option value="tidak">Maaf, saya tidak bisa hadir</option><option value="mungkin">Mungkin hadir</option></select></div></div>'
-    +'<div><label class="form-label" for="ri-msg">Pesan &amp; Doa</label><textarea class="form-textarea" id="ri-msg" rows="4" placeholder="Tuliskan ucapan dan doa terbaik Anda..."></textarea></div>'
-    +'<button type="submit" id="btn-submit">Kirim Konfirmasi</button>'
-    +'</form></div></div>';
+
+  var html = '';
+
+  html += '<div class="batik-overlay light" style="opacity:.2;"></div>';
+  html += '<div class="section-glow-light"></div>';
+  html += lightCorners();
+  html += '<div class="line-maroon-h top"></div>';
+  html += '<div class="line-maroon-h bottom"></div>';
+
+  html += '<div class="inner">';
+  html += sectionTitle(null,'KONFIRMASI KEHADIRAN','light');
+
+  html += '<p class="intro reveal">Kehadiran dan doa restu Anda merupakan kebahagiaan yang sangat berarti bagi kami.</p>';
+  html += '<p class="intro2 reveal">Silakan konfirmasi kehadiran Anda melalui form RSVP yang tersedia. Kami sangat menantikan kehadiran Anda di hari bahagia kami.</p>';
+
+  html += '<div id="rsvp-content" class="reveal">';
+
+  html += '<form class="rsvp-form" id="rsvp-form">';
+
+  html += '<div>';
+  html += '<label class="form-label" for="ri-name">Nama Lengkap</label>';
+  html += '<input class="form-input" type="text" id="ri-name" required placeholder="'+ph+'"/>';
+  html += '</div>';
+
+  html += '<div>';
+  html += '<label class="form-label" for="ri-att">Kehadiran</label>';
+  html += '<div class="form-select-wrap">';
+  html += '<select class="form-select" id="ri-att">';
+  html += '<option value="hadir">Ya, saya akan hadir</option>';
+  html += '<option value="tidak">Maaf, saya tidak bisa hadir</option>';
+  html += '<option value="mungkin">Mungkin hadir</option>';
+  html += '</select>';
+  html += '</div>';
+  html += '</div>';
+
+  html += '<div>';
+  html += '<label class="form-label" for="ri-msg">Pesan & Doa</label>';
+  html += '<textarea class="form-textarea" id="ri-msg" rows="4" placeholder="Tuliskan ucapan dan doa terbaik Anda..."></textarea>';
+  html += '</div>';
+
+  html += '<button type="submit" id="btn-submit">Kirim Konfirmasi</button>';
+
+  html += '</form>';
+  html += '</div>';
+
+  html += '<div class="guest-messages reveal">';
+  html += '<h3 class="guest-title">Ucapan & Doa</h3>';
+  html += '<div id="ucapan-list">Memuat ucapan...</div>';
+  html += '</div>';
+
+  html += '</div>';
+
+  document.getElementById('rsvp').innerHTML = html;
+
   document.getElementById('rsvp-form').addEventListener('submit', submitRsvp);
+
+  loadUcapan();
 }
 
 function submitRsvp(e){
@@ -266,6 +305,34 @@ function submitRsvp(e){
 
   });
 }
+
+function loadUcapan(){
+
+  fetch(SCRIPT_URL)
+  .then(res => res.json())
+  .then(data => {
+
+    let html = "";
+
+    data.reverse().forEach(function(item){
+
+      html += `
+        <div class="ucapan-item">
+          <b>${item.name}</b><br>
+          ${item.attendance}<br>
+          ${item.message}
+        </div>
+      `;
+
+    });
+
+    document.getElementById("ucapan-list").innerHTML = html;
+
+  });
+
+}
+
+window.onload = loadUcapan;
 // ─── GIFT ──────────────────────────────────────────────────────────────────
 function giftCard(type, bank, owner, num){
   return '<div class="gift-card reveal">'
