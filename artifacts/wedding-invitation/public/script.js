@@ -1,5 +1,5 @@
 'use strict';
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby3fMN_5syVixVZ-KpcGFshvWptaVeb5A4ukH43zJjVa3lNkrROFCdp7BjfcqOcrhZUkw/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwsyYqVC-8yuGZEvhxILmxPkEyF42jNUTpi3_pDG4mbhbPYPkvCTzDVZUyMjzDxlr4Ytg/exec";
 // ─── HELPERS ───────────────────────────────────────────────────────────────
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 function pad(n){ return String(n).padStart(2,'0'); }
