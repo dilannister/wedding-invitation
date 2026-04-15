@@ -255,7 +255,6 @@ function submitRsvp(e){
 
   fetch(SCRIPT_URL,{
     method:"POST",
-    mode:"no-cors",
     headers:{
       "Content-Type":"application/json"
     },
@@ -290,13 +289,13 @@ function loadUcapan(){
         } else {
           data.reverse().forEach(function(item){
             html +=
-              '<div class="ucapan-card">'+
-              '<div class="ucapan-head">'+
-              '<span class="ucapan-nama">'+item.name+'</span>'+
-              '<span class="ucapan-status">'+item.attendance+'</span>'+
-              '</div>'+
-              '<div class="ucapan-pesan">'+item.message+'</div>'+
-              '</div>';
+  '<div class="ucapan-card">'+
+  '<div class="ucapan-head">'+
+  '<span class="ucapan-nama">'+(item.name || '-')+'</span>'+
+  '<span class="ucapan-status">'+(item.attendance || '-')+'</span>'+
+  '</div>'+
+  '<div class="ucapan-pesan">'+(item.message || '-')+'</div>'+
+  '</div>';
           });
         }
 
