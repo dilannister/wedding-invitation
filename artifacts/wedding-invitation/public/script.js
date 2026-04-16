@@ -1,5 +1,5 @@
 'use strict';
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby3fMN_5syVixVZ-KpcGFshvWptaVeb5A4ukH43zJjVa3lNkrROFCdp7BjfcqOcrhZUkw/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbya3fSSO3q4HF30jDGsroqfLAxzGqqtlsGFAe0q4bmfMSFlAFx7HCkGo8y8AHRiABxC/exec";
 // ─── HELPERS ───────────────────────────────────────────────────────────────
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 function pad(n){ return String(n).padStart(2,'0'); }
@@ -239,10 +239,13 @@ function submitRsvp(e){
     message: document.getElementById('ri-msg').value
   };
 
-  fetch(SCRIPT_URL, {
-    method: "POST",
-    body: JSON.stringify(data)
-  })
+ fetch(SCRIPT_URL, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(data)
+})
   .then(res => res.text())
   .then(() => {
 
